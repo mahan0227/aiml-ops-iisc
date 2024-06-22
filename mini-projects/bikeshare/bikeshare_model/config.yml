@@ -1,0 +1,141 @@
+# Package Overview
+package_name: bikeshare_model
+
+# Data Files
+training_data_file: bike-sharing-dataset.csv
+test_data_file: test.csv
+
+# Variables
+# The variable we are attempting to predict (Survival)
+target: cnt
+
+pipeline_name: bike_pipeline
+pipeline_save_file: bikeshare__model_output_v
+
+features:      # final features to be use
+  - dteday
+  - season
+  - hr 
+  - holiday 
+  - weekday
+  - workingday   
+  - weathersit   
+  - temp       
+  - atemp
+  - hum
+  - windspeed
+  - yr                  # Derived from dte
+  - mnth                # Derived from dte
+  - casual
+  - registered
+
+unused_fields:  # Features to drop before pipeline
+  - casual
+  - registered
+  - dteday
+
+
+# Features inside processing pipeline
+
+weekday_var: weekday  # first imputatation , then --> onehotencoding
+  
+weathersit_var: weathersit
+
+yr_var: yr
+
+mnth_var: mnth
+
+season_var: season
+
+holiday_var: holiday
+
+workingday_var: workingday
+
+hr_var: hr
+
+temp_var: temp
+
+atemp_var: atemp
+
+hum_var: hum
+
+windspeed_var: windspeed
+
+dteday_var: dteday
+
+
+
+holiday_mappings:
+  Yes: 1
+  No: 0
+
+workingday_mappings:
+  No: 0
+  Yes: 1
+
+weathersit_mappings:
+  Heavy Rain: 0
+  Light Rain: 1
+  Mist: 2
+  Clear: 3
+
+
+season_mappings:
+  spring: 0
+  winter: 1
+  summer: 2
+  fall: 3
+
+yr_mappings:
+  '2011': 0
+  '2012': 1
+
+mnth_mappings:
+  January: 0
+  February: 1
+  March: 2
+  April: 3
+  May: 4
+  June: 5
+  July: 6
+  August: 7
+  September: 8
+  October: 9
+  November: 10
+  December: 11
+
+hr_mappings:
+  4am: 0
+  3am: 1 
+  5am: 2
+  2am: 3 
+  1am: 4 
+  12am: 5 
+  6am: 6 
+  11pm: 7 
+  10pm: 8
+  10am: 9 
+  9pm: 10 
+  11am: 11 
+  7am: 12 
+  9am: 13 
+  8pm: 14 
+  2pm: 15 
+  1pm: 16
+  12pm: 17 
+  3pm: 18 
+  4pm: 19 
+  7pm: 20 
+  8am: 21 
+  6pm: 22 
+  5pm: 23
+  
+# set train/test split
+test_size: 0.20
+
+# to set the random seed
+random_state: 42
+# alogrithm parameters
+n_estimators: 150
+max_depth: 10
+
